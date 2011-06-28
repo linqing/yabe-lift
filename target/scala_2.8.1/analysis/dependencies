@@ -1,0 +1,10 @@
+#Source Dependencies
+#Tue Jun 28 18:04:35 CST 2011
+src\\main\\scala\\code\\snippet\\HelloWorld.scala=
+src\\main\\scala\\code\\model\\Post.scala=src\\main\\scala\\bootstrap\\liftweb\\Boot.scala
+src\\main\\scala\\code\\model\\User.scala=src\\main\\scala\\code\\snippet\\Users.scala;src\\main\\scala\\code\\model\\Post.scala;src\\main\\scala\\bootstrap\\liftweb\\Boot.scala
+src\\main\\scala\\code\\snippet\\Home.scala=
+src\\main\\scala\\code\\snippet\\Users.scala=
+src\\main\\scala\\bootstrap\\liftweb\\Boot.scala=
+src\\main\\scala\\code\\model\\Comment.scala=
+src\\main\\scala\\code\\lib\\DependencyFactory.scala=src\\main\\scala\\code\\snippet\\HelloWorld.scala
