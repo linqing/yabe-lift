@@ -1,3 +1,0 @@
-[error] Incomplete tasks (run 'last <task>' for the full log):
-[debug] Incomplete(node=Some(ScopedKey(Scope(Select(ProjectRef(file:/D:/Coding/yabe-lift/,default)),Global,Global,Global),update)), tpe=init$default$2, msg=None, causes=List(), directCause=Some(sbt.ResolveException: unresolved dependency: com.typesafe.sbteclipse#sbteclipse_2.9.0;1.1: not found))
-[debug] Incomplete(node=None, tpe=init$default$2, msg=None, causes=List(Incomplete(node=Some(ScopedKey(Scope(Select(ProjectRef(file:/D:/Coding/yabe-lift/,default)),Global,Global,Global),update)), tpe=init$default$2, msg=None, causes=List(), directCause=Some(sbt.ResolveException: unresolved dependency: com.typesafe.sbteclipse#sbteclipse_2.9.0;1.1: not found))), directCause=None)
