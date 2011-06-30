@@ -15,7 +15,7 @@ class Users {
       u => 
 	odd=oddOrEven(odd);
       "tr [class]" #> odd &
-      "a [href]" #> ("/admin/user/"+u.id.toString) &
+      "a [href]" #> ("/admin/user/a/b/"+u.id.toString) &
       "a *" #> u.email
     }
   }
@@ -25,15 +25,16 @@ class Users {
 
     def process()= {
       user.validate match {
-	case Nil => println("No error");S.redirectTo("/")
-	case errors => println("has error");S.redirectTo("/admin/")
-      }
+		case Nil => println("No error");S.redirectTo("/")
+		case errors => println("haha");S.redirectTo("/admin/")
+	  }
       //S.redirectTo("/admin/users/add")
     }
     "#email" #> SHtml.onSubmit(user.email.set(_)) &
     "#password" #> SHtml.onSubmit(user.password.set(_))&
     "type=submit" #> SHtml.onSubmitUnit(process)
   }
+  
   private def oddOrEven(current:String) = {
     current match {
       case "odd" => "even"

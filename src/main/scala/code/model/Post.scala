@@ -4,7 +4,7 @@ import net.liftweb.mapper._
 
 class Post extends LongKeyedMapper[Post] with IdPK{
 	def getSingleton = Post
-	object author extends LongMappedMapper(this,User)
+	//object author extends LongMappedMapper(this,User)
 	object title extends MappedString(this,140)
 	object content extends MappedText(this)
 	object postedAt extends MappedDateTime(this)
