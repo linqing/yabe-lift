@@ -43,15 +43,17 @@ class Boot {
     val IfLoggedIn = If(() => User.loggedIn_?,
 			()=>RedirectResponse("/login"))
       
-    def menus = List(Menu.i("Home") / "index" >> User.AddUserMenusAfter,
-		       //Menu.i("admin") / "admin" / ** >> IfLoggedIn 
-		       Menu.i("My posts") / "admin" / "index" >> IfLoggedIn >> LocGroup("admin"),
-		       Menu.i("Posts") / "admin" / "all_posts" >> IfLoggedIn >> LocGroup("admin"),
-		       Menu.i("Tags") / "admin" / "tags" >> IfLoggedIn >> LocGroup("admin"),
-		       Menu.i("Comments") / "admin" / "comments" >> IfLoggedIn >> LocGroup("admin"),
-		       Menu.i("Users") / "admin" / "users" / ** >> IfLoggedIn >> LocGroup("admin")
-		       //Menu.i("User / add") / "admin" / "useradd" >> IfLoggedIn
-		     ):::Post.menus
+    def menus = List(
+    		Menu.i("Home") / "index" >> User.AddUserMenusAfter,
+    		//Menu.i("admin") / "admin" / ** >> IfLoggedIn
+    		Menu.i("My posts") / "admin" / "index" >> IfLoggedIn >> LocGroup("admin"),
+		    Menu.i("Posts") / "admin" / "all_posts" >> IfLoggedIn >> LocGroup("admin"),
+		    Menu.i("Post Add") / "admin" / "posts" / "add" >> IfLoggedIn >> Hidden >> LocGroup("admin"),  
+		    Menu.i("Tags") / "admin" / "tags" >> IfLoggedIn >> LocGroup("admin"),
+		    Menu.i("Comments") / "admin" / "comments" >> IfLoggedIn >> LocGroup("admin"),
+		    Menu.i("Users") / "admin" / "users" / ** >> IfLoggedIn >> LocGroup("admin")
+		    //Menu.i("User / add") / "admin" / "useradd" >> IfLoggedIn
+		    ):::Post.menus
     
     // Build SiteMap
     def sitemap = SiteMap(
