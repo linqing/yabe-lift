@@ -14,12 +14,13 @@ class Posts {
     "" #> <ha></ha>
   } 
   
-  def add(xhtml:NodeSeq):NodeSeq = {
+  def add:CssSel = {
     val post = Post.create
     def addPost(x:Post) = {
       post.save
       S.redirectTo("/admin/index")
     }
-    post.toForm(Full("save"),addPost(_))
+    "#aaa" #> <haha></haha>
+    //post.toForm(Full("save"),addPost(_))
   }
 }
