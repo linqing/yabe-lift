@@ -14,7 +14,7 @@ object User extends User with MetaMegaProtoUser[User] {
   //override def screenWrap = Full(<lift:surround with="default" at="content">
 	//		       <lift:bind /></lift:surround>)
 	
-	override def homePage = "/admin/index"
+	override def homePage = "/admin/posts/index"
 	
 	override def loginXhtml ={
 		<lift:surround with="login" at="content">
