@@ -17,6 +17,7 @@ class Posts {
   
   def add:CssSel = {
     val post = Post.create
+    
     println(post.validate)
     def addPost() = {
       post.author.set(User.currentUserId.openTheBox.toInt)
@@ -26,6 +27,7 @@ class Posts {
         case errors => S.error(errors)
       }
     }
+    
     "name=title" #> SHtml.onSubmit(post.title.set(_)) &
     "name=content" #> SHtml.onSubmit(post.content.set(_)) &
     "type=submit" #> SHtml.onSubmitUnit(()=>addPost)
