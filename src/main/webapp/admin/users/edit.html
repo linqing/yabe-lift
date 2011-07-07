@@ -1,10 +1,14 @@
 <div id="crud" class="lift:surround?with=admin;at=content">
 	<div id="crudContent"> 
     <div id="crudBlank" class="Users"> 
-			<h2 id="crudBlankTitle">Add User</h2> 
+			<h2 id="crudBlankTitle">Edit User</h2> 
+			<form class="lift:Users.delete">
+					<input type="submit" value="Delete User" /> 
+			</form> 
+			
 			<div class="objectForm"> 
 				<div class="lift:msgs?showAll=true"></div>
-				<form class="lift:Users.add?form=post">
+				<form class="lift:Users.edit?form=post">
 					<div class="crudField crud_text"> 
 						<label for="object_email"> Email</label>
 						<input id="email" class="" type="text" name="email" value="" size="50" /> 
@@ -39,6 +43,7 @@
 				</form>
 				
 			</div> 
+
 		</div>    
 	</div> 
 </div>

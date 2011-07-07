@@ -74,9 +74,12 @@ class Boot {
     //Rewrite
     LiftRules.statelessRewrite.append{
       case RewriteRequest(ParsePath("login"::Nil,_,_,_),_,_)=>
-	RewriteResponse("user_mgt"::"login"::Nil)
+        RewriteResponse("user_mgt"::"login"::Nil)
       case RewriteRequest(ParsePath("logout"::Nil,_,_,_),_,_)=>
-	RewriteResponse("user_mgt"::"logout"::Nil)
+        RewriteResponse("user_mgt"::"logout"::Nil)
+      case RewriteRequest(ParsePath("admin"::"users"::"edit"::id::Nil,_,_,_),_,_)=> 
+        RewriteResponse("admin"::"users"::"edit"::Nil,Map("id"->id))
+	
     }
     
     // Use jQuery 1.4

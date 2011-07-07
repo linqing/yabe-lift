@@ -17,7 +17,7 @@
             </div> 
             <ul id="tools"> 
                 <li> 
-                    <a href="/admin/index">Log in to write something</a> 
+                    <a href="/admin/users/index">Log in to write something</a> 
                 </li> 
             </ul> 
             <div id="title"> 
@@ -28,59 +28,54 @@
         </div> 
  
         <div id="main"> 
-            <div class="post "> 
-    <h2 class="post-title"> 
-        <a href="/posts/1">About the model layer</a> 
-    </h2> 
-    <div class="post-metadata"> 
-        <span class="post-author">by Bob</span>,
-        <span class="post-date">14 Jun 09</span> 
-                    <span class="post-comments"> 
-                &nbsp;|&nbsp; 2 comments
-                                    , latest by Mike
-                            </span> 
-                    </div> 
+            <div class="lift:Posts.listLatest post"> 
+		    <h2 class="post-title"> 
+		        <a href="/posts/1" class="post-title-link">Latest post title goes here</a> 
+		    </h2> 
+		    <div class="post-metadata"> 
+		        <span class="post-author">author</span>,
+		        <span class="post-date">post date</span> 
+                <span class="post-comments"> &nbsp;|&nbsp; 2 comments, latest by Mike
+                </span> 
+		    </div> 
             <div class="post-content"> 
-            <div class="about">Detail: </div> 
-            The model has a central position in a Play! application. It is the domain-specific  representation of the information on which the application operates.<br/> <br/>Martin fowler defines it as :<br/>    <br/>Responsible for representing concepts of the business, information about the  business situation, and business rules. State that reflects the business situation  is controlled and used here, even though the technical details of storing it are  delegated to the infrastructure. This layer is the heart of business software.<br/> 
-        </div> 
-    </div> 
+	            <div class="about">Detail: </div> 
+	            The model has a central position in a Play! application. It is the domain-specific  representation of the information on which the application operates.<br/> <br/>Martin fowler defines it as :<br/>    <br/>Responsible for representing concepts of the business, information about the  business situation, and business rules. State that reflects the business situation  is controlled and used here, even though the technical details of storing it are  delegated to the infrastructure. This layer is the heart of business software.<br/> 
+	       		</div> 
+		    </div> 
  
  
     
-        <div class="older-posts"> 
-            <h3>Older posts <span class="from">from this blog</span></h3> 
- 
-                             
-<div class="post teaser"> 
-    <h2 class="post-title"> 
-        <a href="/posts/3">The MVC application</a> 
-    </h2> 
-    <div class="post-metadata"> 
-        <span class="post-author">by Jeff</span>,
-        <span class="post-date">06 Jun 09</span> 
-                    <span class="post-comments"> 
-                &nbsp;|&nbsp; no comments
-                            </span> 
-                    </div> 
-    </div> 
- 
-                             
-<div class="post teaser"> 
-    <h2 class="post-title"> 
-        <a href="/posts/2">Just a test of YABE</a> 
-    </h2> 
-    <div class="post-metadata"> 
-        <span class="post-author">by Bob</span>,
-        <span class="post-date">25 Mar 09</span> 
-                    <span class="post-comments"> 
-                &nbsp;|&nbsp; 1 comment
-                                    , latest by Tom
-                            </span> 
-                    </div> 
-    </div> 
- 
-                    </div>        </div> 
+	        <div class="older-posts"> 
+	            <h3>Older posts <span class="from">from this blog</span></h3>                     
+				<div class="post teaser"> 
+				    <h2 class="post-title"> 
+				        <a href="/posts/3">The MVC application</a> 
+				    </h2> 
+				    <div class="post-metadata"> 
+				        <span class="post-author">by Jeff</span>,
+				        <span class="post-date">06 Jun 09</span> 
+				        <span class="post-comments"> 
+				                &nbsp;|&nbsp; no comments
+				        </span> 
+				    </div> 
+				</div> 
+	 
+	           	<div class="post teaser"> 
+				    <h2 class="post-title"> 
+				        <a href="/posts/2">Just a test of YABE</a> 
+				    </h2> 
+		    		<div class="post-metadata"> 
+		        		<span class="post-author">by Bob</span>,
+		        		<span class="post-date">25 Mar 09</span> 
+		            	<span class="post-comments"> 
+		                	&nbsp;|&nbsp; 1 comment
+		                                    , latest by Tom
+		                </span> 
+		            </div> 
+	    		</div> 
+ 			</div>        
+ 		</div> 
  
         <p id="footer"> 
             Yabe is a (not so) powerful blog engine built with the 
