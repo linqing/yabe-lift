@@ -3,16 +3,16 @@
 		<div id="crudList" class="Users">
 			<h2 id="crudListTitle">Users</h2> 
 			<div id="crudListSearch" style="background-color:#314660; border:0px;"> 
-		    	<form action="/admin/users/index" method="POST">        
+		    	<form class="lift:Users.search?form=post">        
 		    		<input type="text" name="search" value="" /> 
 		    		<input type="submit" value="Search" /> 
-		    	</form>    
+		    	</form>       
      		</div> 
 			<div id="crudListTable">  
 				<table> 
 					<thead> 
 						<tr> 
-							<th><a class="crudSortedAsc" href="/admin/users?order=DESC"> Users </a> </th> 
+							<th><form class="lift:Users.search?form=post"><input type="submit" /></form><a class="lift:Users.sort crudSortedAsc" href="/admin/users/index?order=DESC"> Users </a> </th> 
 						</tr> 
 					</thead>
 					<tbody id="users" class="lift:Users.list">
