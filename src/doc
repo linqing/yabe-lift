@@ -1,7 +1,7 @@
 1. static index page
 2. login
 3. admin menu
-4. user management
+4. user management , RequestVar, StatefulSnippet
 
 ToDo:
 Add default user

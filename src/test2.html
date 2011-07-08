@@ -1,0 +1,104 @@
+
+<!DOCTYPE html>
+<html lang="en" xml:lang="en">
+<head>
+<title>Administration</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+<link href="/static/stylesheets/main.css" media="screen" type="text/css"
+	rel="stylesheet">
+<link href="/static/stylesheets/crud.css" media="screen" type="text/css"
+	rel="stylesheet">
+<link href="/static/images/favicon.png" type="image/png"
+	rel="shortcut icon">
+<script type="text/javascript" src="/classpath/jquery.js" id="jquery"></script>
+<script type="text/javascript" src="/classpath/json.js" id="json"></script>
+<script
+	src="/static/javascripts/jquery.tools-1.2.5.toolbox.expose.min.js"></script>
+
+
+</head>
+<body id="admin">
+
+	<div id="header">
+		<div id="logo">
+			yabe. <span>administration</span>
+		</div>
+		<ul id="tools">
+			<li><a href="/logout">Log out</a></li>
+		</ul>
+	</div>
+
+	<div id="main">
+		<ul class="adminMenu">
+			<li><a href="/admin/posts/">My posts</a>
+			</li>
+			<li><span>Posts</span>
+			</li>
+			<li><a href="/admin/tags/">Tags</a>
+			</li>
+			<li><a href="/admin/comments/">Comments</a>
+			</li>
+			<li><a href="/admin/users/">Users</a>
+			</li>
+		</ul>
+		<div>
+			<div id="crudContent">
+				<div class="Posts" id="crudList">
+
+					<h2 id="crudListTitle">Posts</h2>
+
+					<div id="crudListSearch">
+						<form enctype="application/x-www-form-urlencoded"
+							accept-charset="utf-8" method="GET" action="/admin/posts">
+							<input value="" name="search" type="text"> <input
+								value="Search" type="submit">
+
+						</form>
+					</div>
+
+					<div id="crudListTable">
+
+						<table>
+							<thead>
+								<tr>
+									<th><a href="/admin/posts?order=DESC"
+										class="crudSortedAsc"> Posts </a></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="odd">
+									<td><a href="/admin/posts/1">About the model layer</a></td>
+								</tr>
+								<tr class="even">
+									<td><a href="/admin/posts/2">Just a test of YABE</a></td>
+								</tr>
+								<tr class="odd">
+									<td><a href="/admin/posts/3">The </a></td>
+								</tr>
+								<tr class="even">
+									<td><a href="/admin/posts/4">fewf</a></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<div id="crudListPagination">
+
+					<p class="crudCount">4 Posts</p>
+
+				</div>
+
+				<p id="crudListAdd">
+					<a href="/admin/posts/new">Add Post</a>
+				</p>
+			</div>
+		</div>
+	</div>
+
+	<p id="footer">
+		Yabe is a (not so) powerful blog engine built with the <a
+			href="http://www.playframework.org">play framework</a> as a tutorial
+		application.
+	</p>
+</body>
+</html>

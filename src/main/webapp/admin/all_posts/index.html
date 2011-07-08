@@ -1,0 +1,52 @@
+<div class="lift:surround?with=admin;at=content">
+	<div id="crud">
+		<div id="crudContent">
+			<div id="crudList" class="Posts">
+	
+				<h2 id="crudListTitle">Posts</h2>
+	
+				<div id="crudListSearch">
+					<form action="/admin/posts" method="GET" accept-charset="utf-8"
+						enctype="application/x-www-form-urlencoded">
+						<input type="text" name="search" value="" /> <input type="submit"
+							value="Search" />
+	
+					</form>
+				</div>
+	
+				<div id="crudListTable">
+	
+					<table>
+						<thead>
+							<tr>
+								<th><a class="crudSortedAsc" href="/admin/posts?order=DESC">
+										Posts </a></th>
+							</tr>
+						</thead>
+						<tr class="odd">
+							<td><a href="/admin/posts/1">About the model layer</a></td>
+						</tr>
+						<tr class="even">
+							<td><a href="/admin/posts/2">Just a test of YABE</a></td>
+						</tr>
+						<tr class="odd">
+							<td><a href="/admin/posts/3">The </a></td>
+						</tr>
+						<tr class="even">
+							<td><a href="/admin/posts/4">fewf</a></td>
+						</tr>
+					</table>
+				</div>
+				<div id="crudListPagination">
+	
+					<p class="crudCount">4 Posts</p>
+	
+				</div>
+	
+				<p id="crudListAdd">
+					<a href="/admin/posts/new">Add Post</a>
+				</p>
+			</div>
+		</div>
+	</div>
+</div>

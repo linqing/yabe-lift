@@ -40,29 +40,27 @@ class Boot {
     // where to search snippet
     LiftRules.addToPackages("code")
 
-    val IfLoggedIn = If(() => User.loggedIn_?,
+    val IfUserLoggedIn = If(() => User.loggedIn_?,
 			()=>RedirectResponse("/login"))
+	val IfAdminLoggedIn = If(()=>User.loggedIn_? && User.superUser_?,
+			()=>RedirectResponse("/admin/posts/index"))
       
     def menus = List(
-    		Menu.i("Home") / "index" >> User.AddUserMenusAfter,
-    		//Menu.i("admin") / "admin" / ** >> IfLoggedIn
-    		Menu.i("My posts") / "admin" / "posts" / ** >> IfLoggedIn  >> LocGroup("admin"),
-    		Menu.i("Posts") / "admin" / "all_posts" >> IfLoggedIn >> LocGroup("admin"),
-		    Menu.i("Tags") / "admin" / "tags" >> IfLoggedIn >> LocGroup("admin"),
-		    Menu.i("Comments") / "admin" / "comments" >> IfLoggedIn >> LocGroup("admin"),
-		    Menu.i("Users") / "admin" / "users" / ** >> IfLoggedIn >> LocGroup("admin")
-		    //Menu.i("User / add") / "admin" / "useradd" >> IfLoggedIn
-		    ):::Post.menus
+    		Menu.i("Home") / "index", //>> User.AddUserMenusAfter,
+    		
+    		//Can be accessed by both users and admins
+    		Menu.i("My posts") / "admin" / "posts" / ** >> IfUserLoggedIn  >> LocGroup("admin"),
+    		
+    		//Can be accessed by admins
+    		Menu.i("Posts") / "admin" / "all_posts" / ** >> IfAdminLoggedIn >> LocGroup("admin"),
+		    Menu.i("Tags") / "admin" / "tags" / ** >> IfAdminLoggedIn >> LocGroup("admin"),
+		    Menu.i("Comments") / "admin" / "comments" / ** >> IfAdminLoggedIn >> LocGroup("admin"),
+		    Menu.i("Users") / "admin" / "users" / ** >> IfAdminLoggedIn >> LocGroup("admin")
+		    )
     
     // Build SiteMap
     def sitemap = SiteMap(
       menus:_*
-      //Menu.i("Home") / "index" >> User.AddUserMenusAfter/*, // the simple way to declare a menu
-
-      // more complex because this menu allows anything in the
-      // /static path to be visible
-      // Menu(Loc("Static", Link(List("static"), true, "/static/index"), 
-      //				 "Static Content")) */
     )
 
     def sitemapMutators = User.sitemapMutator
@@ -73,13 +71,19 @@ class Boot {
     
     //Rewrite
     LiftRules.statelessRewrite.append{
+      //Login and logout
       case RewriteRequest(ParsePath("login"::Nil,_,_,_),_,_)=>
         RewriteResponse("user_mgt"::"login"::Nil)
       case RewriteRequest(ParsePath("logout"::Nil,_,_,_),_,_)=>
         RewriteResponse("user_mgt"::"logout"::Nil)
+      
+      //Edit users
       case RewriteRequest(ParsePath("admin"::"users"::"edit"::id::Nil,_,_,_),_,_)=> 
         RewriteResponse("admin"::"users"::"edit"::Nil,Map("id"->id))
-	
+      
+      //Edit posts
+      case RewriteRequest(ParsePath("admin"::"posts"::"edit"::id::Nil,_,_,_),_,_) =>
+        RewriteResponse("admin"::"posts"::"edit"::Nil,Map("id"->id))
     }
     
     // Use jQuery 1.4

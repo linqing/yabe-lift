@@ -11,6 +11,8 @@ import code.lib._
 
 class Users {
  
+  //Use RequestVar to keep status, 
+  //so that change the order of User list can still keep the search result
   private object searchStr extends RequestVar("")
   
   def list:CssSel = {        
@@ -28,52 +30,7 @@ class Users {
   def search:CssSel = {
     "name=search" #> SHtml.textElem(searchStr)
   }
-  
-  def add:CssSel = {
-   val user = User.create
-
-    def process()= {
-      user.validate match {
-		case Nil => {
-		  user.validated.set(true)
-		  user.save
-		  S.redirectTo("/admin/users/")
-		}
-		case errors => S.error(errors)
-	  }
-      //S.redirectTo("/admin/users/add")
-    }
-   	
-    "#email" #> SHtml.onSubmit(user.email.set(_)) &
-    "#password" #> SHtml.password("",user.password.set(_)) &
-    "#firstname" #> SHtml.onSubmit(user.firstName.set(_)) &
-    "#lastname" #> SHtml.onSubmit(user.lastName.set(_)) &
-    "#isAdmin" #> SHtml.onSubmit((x:String)=>user.superUser.set(x.toBoolean)) &
-    "type=submit" #> SHtml.onSubmitUnit(process)
-  }
-  
-  def edit:CssSel = {
-    val id = S.param("id").openTheBox
-    val user = User.find(By(User.id,id.toLong)).openTheBox
     
-    def process() = {
-      user.validate match {
-        case Nil => {
-          user.save
-          S.redirectTo("/admin/users/")
-        }
-        case errors => S.error(errors)
-      }
-    }
-    
-    "#email" #> SHtml.text(user.email,user.email.set(_)) &
-    "#password" #> SHtml.password(user.password,user.password.set(_)) & 
-    "#firstname" #> SHtml.text(user.firstName,user.firstName.set(_)) &
-    "#lastname" #> SHtml.text(user.lastName,user.lastName.set(_)) &
-    "#isAdmin" #> SHtml.checkbox(user.superUser, user.superUser.set(_)) &
-    "type=submit" #> SHtml.onSubmitUnit(process)
-  }
-  
   def delete:CssSel = {
     val id = S.param("id").openTheBox
     val user = User.find(By(User.id,id.toLong)).openTheBox
@@ -87,15 +44,20 @@ class Users {
   }
   
   def sort = {
-    /*if(getUserOrder == "DESC")
-      //"a [class]" #> "crudSortedDesc" &
-      "a" #> SHtml.link("/admin/users/index?order=ASC", ()=>Unit, <span>aa</span>)
+    val search = searchStr.is
+    
+    if(getUserOrder == "DESC")
+      "a [class]" #> "crudSortedDesc" &
+      "a" #> SHtml.link("/admin/users/index?order=ASC", 
+          ()=>searchStr(search), 
+          <span>Users</span>,
+          "class"->"crudSortedDesc")
     else 
-      //"a [class]" #> "crudSortedAsc" &
-      "a [href]" #> "/admin/users/index?order=DESC"*/
-    def process() = {}
-    "a" #> SHtml.link("", ()=>Unit, <span>aa</span>) &
-    "type=submit" #> SHtml.onSubmitUnit(process)
+      "a [class]" #> "crudSortedAsc" &
+      "a" #> SHtml.link("/admin/users/index?order=DESC", 
+          ()=>searchStr(search), 
+          <span>Users</span>,
+          "class"->"crudSortedAsc")
   }
   
   def count:CssSel = {
@@ -131,4 +93,59 @@ class Users {
   }
   
   private def validSearch() = searchStr.is!=""
+}
+
+//Use stateful snippet in user adding function to keep form values
+class UsersAdd extends StatefulSnippet {
+  
+  private val user = User.create
+  
+  def dispatch = {case "render"=>render}
+ 
+  def render:CssSel = {
+    def process()= {
+      user.validate match {
+		case Nil => {
+		  user.validated.set(true)
+		  user.save
+		  S.redirectTo("/admin/users/")
+		}
+		case errors => S.error(errors)
+	  }
+    }
+   	
+    "#email" #> SHtml.text(user.email,user.email.set(_)) &
+    "#password" #> SHtml.password("",user.password.set(_)) &
+    "#firstname" #> SHtml.text(user.firstName, user.firstName.set(_)) &
+    "#lastname" #> SHtml.text(user.lastName, user.lastName.set(_)) &
+    "#isAdmin" #> SHtml.checkbox(user.superUser, user.superUser.set(_)) &
+    "type=submit" #> SHtml.onSubmitUnit(process)
+  }
+}
+
+class UsersEdit extends StatefulSnippet {
+  private val id = S.param("id").openTheBox
+  private val user = User.find(By(User.id,id.toLong)).openTheBox
+  
+  def dispatch = {case "render"=>render}
+  
+  def render:CssSel = {
+    
+    def process() = {
+      user.validate match {
+        case Nil => {
+          user.save
+          S.redirectTo("/admin/users/")
+        }
+        case errors => S.error(errors)
+      }
+    }
+    
+    "#email" #> SHtml.text(user.email,user.email.set(_)) &
+    "#password" #> SHtml.password(user.password,user.password.set(_)) & 
+    "#firstname" #> SHtml.text(user.firstName,user.firstName.set(_)) &
+    "#lastname" #> SHtml.text(user.lastName,user.lastName.set(_)) &
+    "#isAdmin" #> SHtml.checkbox(user.superUser, user.superUser.set(_)) &
+    "type=submit" #> SHtml.onSubmitUnit(process)
+  }
 }
