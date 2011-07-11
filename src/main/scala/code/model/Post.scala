@@ -10,10 +10,9 @@ class Post extends LongKeyedMapper[Post] with IdPK{
 	
 	object author extends LongMappedMapper(this,User) {
 	  override def validSelectValues = {
-	    val id = User.currentUserId.openTheBox.toInt
-	    Full(
-	      User.findAll(By(User.id, id)).
-	      map(x => (x.id.get,x.email.get)))
+	    val users = User.findAll().map(x=>(x.id.get,x.email.get))
+	    val list = (0.toLong,"(Please select a user)")::users
+	    Full(list)
 	  }
 	}
 	

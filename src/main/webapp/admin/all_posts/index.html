@@ -6,45 +6,35 @@
 				<h2 id="crudListTitle">Posts</h2>
 	
 				<div id="crudListSearch" style="background-color:#314660; border:0px;">
-					<form action="/admin/posts" method="GET" accept-charset="utf-8"
-						enctype="application/x-www-form-urlencoded">
-						<input type="text" name="search" value="" /> <input type="submit"
-							value="Search" />
-	
+					<form class="lift:AllPosts.search?form=post">
+						<input type="text" name="search" value="" /> 
+						<input type="submit" value="Search" />
 					</form>
 				</div>
 	
 				<div id="crudListTable">
-	
 					<table>
 						<thead>
 							<tr>
-								<th><a class="crudSortedAsc" href="/admin/posts?order=DESC">
-										Posts </a></th>
+								<th>
+									<a class="lift:AllPosts.sort crudSortedAsc" href="/admin/all_posts/index?order=DESC">
+										Posts 
+									</a>
+								</th>
 							</tr>
 						</thead>
-						<tr class="odd">
-							<td><a href="/admin/posts/1">About the model layer</a></td>
-						</tr>
-						<tr class="even">
-							<td><a href="/admin/posts/2">Just a test of YABE</a></td>
-						</tr>
-						<tr class="odd">
-							<td><a href="/admin/posts/3">The </a></td>
-						</tr>
-						<tr class="even">
-							<td><a href="/admin/posts/4">fewf</a></td>
+						<tr class="lift:AllPosts.list">
+							<td><a>{The title of the post}</a></td>
 						</tr>
 					</table>
 				</div>
+				
 				<div id="crudListPagination" style="background-color:#314660; border:0px;">
-	
-					<p class="crudCount">4 Posts</p>
-	
+					<p class="crudCount"><span class="lift:AllPosts.count">{posts number}</span> Posts</p>
 				</div>
 	
 				<p id="crudListAdd">
-					<a href="/admin/posts/new">Add Post</a>
+					<a href="/admin/all_posts/add">Add Post</a>
 				</p>
 			</div>
 		</div>
