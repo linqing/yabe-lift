@@ -12,7 +12,9 @@ object YabeHelper {
   }
   
   def fmtDateStr(date:java.util.Date) = {
-    val format = new java.text.SimpleDateFormat("yyyy-MM-dd")
-    format.format(date)
+    date match {
+      case null => ""
+      case _=>  val format = new java.text.SimpleDateFormat("yyyy-MM-dd");format.format(date)
+    }
   }
 }

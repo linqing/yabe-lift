@@ -105,7 +105,7 @@ class AllPostsAdd extends StatefulSnippet {
     
     "name=title" #> SHtml.text(post.title, post.title.set(_)) &
     "name=content" #> SHtml.textarea(post.content, post.content.set(_)) &
-    "name=postedAt" #> SHtml.textarea(YabeHelper.fmtDateStr(post.postedAt), post.postedAt.setFromAny(_)) & 
+    "name=postedAt" #> SHtml.text(YabeHelper.fmtDateStr(post.postedAt), post.postedAt.setFromAny(_)) & 
     "name=author_id" #> post.author.toForm &
     "type=submit" #> SHtml.onSubmitUnit(()=>process)
   }
