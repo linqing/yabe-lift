@@ -14,6 +14,15 @@ class Post extends LongKeyedMapper[Post] with IdPK{
 	    val list = (0.toLong,"(Please select a user)")::users
 	    Full(list)
 	  }
+	  
+	  override def validations = {
+	    def needAuthor(author:Long) = {
+	      if(author==0) List(FieldError(this,"Please select a user."))
+	      else List[FieldError]()
+	    }
+	    
+	    needAuthor _ :: Nil
+	  }
 	}
 	
 	object title extends MappedString(this,140) {
@@ -26,7 +35,7 @@ class Post extends LongKeyedMapper[Post] with IdPK{
 	  override def validations = {
 		def notNull(txt:String ) = {
 		  if(txt=="")
-		    List(FieldError(this,"Please input content"))
+		    List(FieldError(this,"Please input content."))
 		  else
 		    List[FieldError]()
 		}
@@ -35,7 +44,18 @@ class Post extends LongKeyedMapper[Post] with IdPK{
 	  }
 	}
 	
-	object postedAt extends MappedDateTime(this)
+	object postedAt extends MappedDateTime(this) {
+	  override def validations = {
+	    def isDate(txt:java.util.Date) = {
+	      if(txt!="")
+	        List(FieldError(this,"Please input a validate date."))
+	      else
+	        List[FieldError]()
+	    }
+	    
+	    isDate _ :: Nil
+	  }
+	}
 }
 
 object Post extends Post with LongKeyedMetaMapper[Post] with CRUDify[Long,Post]

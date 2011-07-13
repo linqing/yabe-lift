@@ -94,8 +94,6 @@ class AllPostsAdd extends StatefulSnippet {
     val post = Post.create
     
     def process() = {
-      //post.author.set(User.currentUserId.openTheBox.toInt)
-      //post.postedAt.set(new Date())
       post.validate match {
         case Nil => {
           post.save
@@ -107,7 +105,7 @@ class AllPostsAdd extends StatefulSnippet {
     
     "name=title" #> SHtml.text(post.title, post.title.set(_)) &
     "name=content" #> SHtml.textarea(post.content, post.content.set(_)) &
-    "name=postedAt" #> post.postedAt.toForm & 
+    "name=postedAt" #> SHtml.textarea(YabeHelper.fmtDateStr(post.postedAt), post.postedAt.setFromAny(_)) & 
     "name=author_id" #> post.author.toForm &
     "type=submit" #> SHtml.onSubmitUnit(()=>process)
   }

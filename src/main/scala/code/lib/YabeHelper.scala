@@ -10,4 +10,9 @@ object YabeHelper {
       case _ => "odd"
     }
   }
+  
+  def fmtDateStr(date:java.util.Date) = {
+    val format = new java.text.SimpleDateFormat("yyyy-MM-dd")
+    format.format(date)
+  }
 }
