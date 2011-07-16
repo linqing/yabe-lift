@@ -82,8 +82,8 @@ class Boot {
         RewriteResponse("admin"::"users"::"edit"::Nil,Map("id"->id))
       
       //Edit posts
-      case RewriteRequest(ParsePath("admin"::"posts"::"edit"::id::Nil,_,_,_),_,_) =>
-        RewriteResponse("admin"::"posts"::"edit"::Nil,Map("id"->id))
+      case RewriteRequest(ParsePath("admin"::"all_posts"::"edit"::id::Nil,_,_,_),_,_) =>
+        RewriteResponse("admin"::"all_posts"::"edit"::Nil,Map("id"->id))
     }
     
     // Use jQuery 1.4

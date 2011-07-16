@@ -44,16 +44,26 @@ class Post extends LongKeyedMapper[Post] with IdPK{
 	  }
 	}
 	
-	object postedAt extends MappedDateTime(this) {
+	object postedAt extends MappedDate(this) {
 	  override def validations = {
 	    def isDate(txt:java.util.Date) = {
-	      if(txt!="")
+	      if(txt==null)
 	        List(FieldError(this,"Please input a validate date."))
 	      else
 	        List[FieldError]()
 	    }
 	    
 	    isDate _ :: Nil
+	  }
+	  
+	  override def parse(s:String):Box[java.util.Date] = {
+	    val df = new java.text.SimpleDateFormat("yyyy-MM-dd")
+	    try {
+	      val date = df.parse(s)
+	      Full(date)
+	    } catch {
+	      case _ => Empty
+	    }
 	  }
 	}
 }

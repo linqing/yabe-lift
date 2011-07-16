@@ -3,11 +3,14 @@
 		<div id="crudContent">
 			<div id="crudBlank" class="Posts">
 
-				<h2 id="crudBlankTitle">Add Post</h2>
+				<h2 id="crudBlankTitle">Edit Post</h2>
+				<form class="lift:AllPosts.delete">
+					<input type="submit" value="Delete Post" /> 
+				</form> 
 
 				<div class="objectForm">
 					<div class="lift:msgs?showAll=true"></div>
-					<form class="lift:AllPostsAdd?form=post">
+					<form class="lift:AllPostsEdit?form=post">
 
 						<div class="crudField crud_text">
 							<label for="object_title"> Title </label> <input

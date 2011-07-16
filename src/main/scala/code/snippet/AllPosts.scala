@@ -24,6 +24,19 @@ class AllPosts {
 	}
   }
   
+  def delete:CssSel = {
+    val id = S.param("id").openTheBox
+    val post = Post.find(By(Post.id,id.toLong)).openTheBox
+    
+    def process() = {
+      post.delete_!
+      S.redirectTo("/admin/all_posts/index")
+    }
+    
+    "type=submit" #> SHtml.onSubmitUnit(process)
+  }
+  
+  
   def search:CssSel = {
     "name=search" #> SHtml.textElem(searchStr)
   }
@@ -86,13 +99,11 @@ class AllPosts {
 
 class AllPostsAdd extends StatefulSnippet {
   
-  var post = Post.create
+  val post = Post.create
   
   def dispatch = { case "render" => render }
   
   def render = {
-    val post = Post.create
-    
     def process() = {
       post.validate match {
         case Nil => {
@@ -111,6 +122,28 @@ class AllPostsAdd extends StatefulSnippet {
   }
 }
 
-/*class PostsEdit extends StatefulSnippet {
+class AllPostsEdit extends StatefulSnippet {
+  private val id = S.param("id").openTheBox
+  private val post = Post.find(By(Post.id,id.toLong)).openTheBox
   
-}*/
+  def dispatch = {case "render"=>render}
+  
+  def render:CssSel = {
+    
+    def process() = {
+      post.validate match {
+        case Nil => {
+          post.save
+          S.redirectTo("/admin/all_posts/index")
+        }
+        case errors => S.error(errors)
+      }
+    }
+    
+    "name=title" #> SHtml.text(post.title, post.title.set(_)) &
+    "name=content" #> SHtml.textarea(post.content, post.content.set(_)) &
+    "name=postedAt" #> SHtml.text(YabeHelper.fmtDateStr(post.postedAt), post.postedAt.setFromAny(_)) & 
+    "name=author_id" #> post.author.toForm &
+    "type=submit" #> SHtml.onSubmitUnit(()=>process)
+  }
+}
