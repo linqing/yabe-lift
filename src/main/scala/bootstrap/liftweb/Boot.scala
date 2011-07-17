@@ -47,7 +47,7 @@ class Boot {
       
     def menus = List(
     		Menu.i("Home") / "index", //>> User.AddUserMenusAfter,
-    		
+    		Menu.i("Read") / "read" , 
     		//Can be accessed by both users and admins
     		Menu.i("My posts") / "admin" / "posts" / ** >> IfUserLoggedIn  >> LocGroup("admin"),
     		
@@ -82,8 +82,14 @@ class Boot {
         RewriteResponse("admin"::"users"::"edit"::Nil,Map("id"->id))
       
       //Edit posts
+      case RewriteRequest(ParsePath("admin"::"posts"::"edit"::id::Nil,_,_,_),_,_)=>
+        RewriteResponse("admin"::"posts"::"edit"::Nil,Map("id"->id))
       case RewriteRequest(ParsePath("admin"::"all_posts"::"edit"::id::Nil,_,_,_),_,_) =>
         RewriteResponse("admin"::"all_posts"::"edit"::Nil,Map("id"->id))
+        
+      //read post
+      case RewriteRequest(ParsePath("read"::id::Nil,_,_,_),_,_) =>
+        RewriteResponse("read"::Nil,Map("id"->id))
     }
     
     // Use jQuery 1.4

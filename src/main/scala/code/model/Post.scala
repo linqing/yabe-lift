@@ -23,6 +23,10 @@ class Post extends LongKeyedMapper[Post] with IdPK{
 	    
 	    needAuthor _ :: Nil
 	  }
+	  
+	  def getAuthor = {
+	    User.find(By(User.id,author.get)).openTheBox
+	  }
 	}
 	
 	object title extends MappedString(this,140) {

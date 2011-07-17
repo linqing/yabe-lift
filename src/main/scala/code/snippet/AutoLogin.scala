@@ -13,7 +13,7 @@ object AutoLogin {
 	def process() = {
 	  val u = User.findAll(By(User.email,"pkufashuo400@gmail.com"))
 	  if(u.length>0)
-	    User.logUserIn(u.head, ()=>S.redirectTo("/admin/posts/add"))
+	    User.logUserIn(u.head, ()=>S.redirectTo("/admin/posts/index"))
 	}
     "type=submit" #> SHtml.onSubmitUnit(process)
   }

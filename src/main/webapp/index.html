@@ -1,88 +1,49 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
- 
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"> 
-    <head> 
-        <title>Home</title> 
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/> 
-        <link rel="stylesheet" type="text/css" href="static/stylesheets/main.css" charset="utf-8" ></link> 
-        <link rel="shortcut icon" type="image/png" href="static/images/favicon.png" /> 
-        <script type="text/javascript" language="javascript"  src="static/javascripts/jquery-1.4.2.min.js"></script> 
-        <script type="text/javascript" language="javascript"  src="static/javascripts/jquery.tools-1.2.5.toolbox.expose.min.js"></script> 
-    </head> 
-    <body> 
- 
-        <div id="header"> 
-            <div id="logo"> 
-                yabe.
-            </div> 
-            <ul id="tools"> 
-                <li> 
-                    <a href="/admin/users/index">Log in to write something</a> 
-                </li> 
-            </ul> 
-            <div id="title"> 
-                <span class="about">About this blog</span> 
-                <h1><a href="/">Yet another blog</a></h1> 
-                <h2>We will write about nothing</h2> 
-            </div> 
-        </div> 
- 
-        <div id="main"> 
-            <div class="lift:Posts.listLatest post"> 
-		    <h2 class="post-title"> 
-		        <a href="/posts/1" class="post-title-link">Latest post title goes here</a> 
-		    </h2> 
-		    <div class="post-metadata"> 
-		        <span class="post-author">author</span>,
-		        <span class="post-date">post date</span> 
-                <span class="post-comments"> &nbsp;|&nbsp; 2 comments, latest by Mike
-                </span> 
-		    </div> 
-            <div class="post-content"> 
-	            <div class="about">Detail: </div> 
-	            The model has a central position in a Play! application. It is the domain-specific  representation of the information on which the application operates.<br/> <br/>Martin fowler defines it as :<br/>    <br/>Responsible for representing concepts of the business, information about the  business situation, and business rules. State that reflects the business situation  is controlled and used here, even though the technical details of storing it are  delegated to the infrastructure. This layer is the heart of business software.<br/> 
-	       		</div> 
-		    </div> 
- 
- 
-    
-	        <div class="older-posts"> 
-	            <h3>Older posts <span class="from">from this blog</span></h3>                     
-				<div class="post teaser"> 
-				    <h2 class="post-title"> 
-				        <a href="/posts/3">The MVC application</a> 
-				    </h2> 
-				    <div class="post-metadata"> 
-				        <span class="post-author">by Jeff</span>,
-				        <span class="post-date">06 Jun 09</span> 
-				        <span class="post-comments"> 
-				                &nbsp;|&nbsp; no comments
-				        </span> 
-				    </div> 
-				</div> 
-	 
-	           	<div class="post teaser"> 
-				    <h2 class="post-title"> 
-				        <a href="/posts/2">Just a test of YABE</a> 
-				    </h2> 
-		    		<div class="post-metadata"> 
-		        		<span class="post-author">by Bob</span>,
-		        		<span class="post-date">25 Mar 09</span> 
-		            	<span class="post-comments"> 
-		                	&nbsp;|&nbsp; 1 comment
-		                                    , latest by Tom
-		                </span> 
-		            </div> 
-	    		</div> 
- 			</div>        
- 		</div> 
- 
-        <p id="footer"> 
-            Yabe is a (not so) powerful blog engine built with the 
-            <a href="http://www.playframework.org">play framework</a> 
-            as a tutorial application.
-        </p> 
- 
-    </body> 
-</html>  
+<div id="main" class="lift:surround?with=default;at=container">
+	<head_merge>
+      <title>Home</title>
+    </head_merge>
+
+	<div class="lift:Posts.listLatest post">
+		<h2 class="post-title">
+			<a href="/posts/1" class="post-title-link">Latest post title goes
+				here</a>
+		</h2>
+		<div class="post-metadata">
+			<span class="post-author">author</span>, <span class="post-date">post
+				date</span> <span class="post-comments"> &nbsp;|&nbsp; 2 comments,
+				latest by Mike </span>
+		</div>
+		<div class="post-content">
+			<div class="about">Detail:</div>
+			<span id="post-content-span"> The model has a central position
+				in a Play! application. It is the domain-specific representation of
+				the information on which the application operates.<br /> <br />Martin
+				fowler defines it as :<br /> <br />Responsible for representing
+				concepts of the business, information about the business situation,
+				and business rules. State that reflects the business situation is
+				controlled and used here, even though the technical details of
+				storing it are delegated to the infrastructure. This layer is the
+				heart of business software.<br /> </span>
+		</div>
+	</div>
+
+
+
+	<div class="older-posts">
+		<h3>
+			Older posts <span class="from">from this blog</span>
+		</h3>
+		<div class="lift:Posts.listOlder post teaser">
+			<h2 class="post-title">
+				<a class="post-title-link" href="/posts/3">The MVC application</a>
+			</h2>
+			<div class="post-metadata">
+				<span class="post-author">by Jeff</span>, <span class="post-date">06
+					Jun 09</span> <span class="post-comments"> &nbsp;|&nbsp; no
+					comments </span>
+			</div>
+		</div>
+	</div>
+</div>
+
 

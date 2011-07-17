@@ -2,9 +2,15 @@
 2. login
 3. admin menu
 4. user management , RequestVar, StatefulSnippet
+5. validSelectValues, fmtDateStr
+6. embed, autologin
+7. header_merge
 
 ToDo:
 Add default user
 Add default Article
 Add some comments
 Add some tags
+
+XSS
+getAuthor.openTheBox problem when there is not a author
