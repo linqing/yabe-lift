@@ -12,7 +12,7 @@ import Loc._
 import mapper._
 
 import code.model._
-
+import code.lib._
 
 /**
  * A class that's instantiated early and run.  It allows the application
@@ -92,6 +92,10 @@ class Boot {
         RewriteResponse("read"::Nil,Map("id"->id))
     }
     
+    //Captcha function
+    LiftRules.dispatch.append{
+      case Req("captcha" :: Nil, _, _) => YabeHelper.captcha
+    }
     // Use jQuery 1.4
     //LiftRules.jsArtifacts = net.liftweb.http.js.jquery.JQuery14Artifacts
 

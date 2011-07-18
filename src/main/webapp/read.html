@@ -60,12 +60,9 @@
 
 	<h3>Post a comment</h3>
 
-	<form action="/posts/1/comments" method="POST" accept-charset="utf-8"
-		enctype="application/x-www-form-urlencoded">
-		<input type="hidden" name="authenticityToken"
-			value="fb164d5a59d32226a3a4d71f9b66d9147950feca">
-
-
+	<form class="lift:form.ajax">
+		<div class="lift:Comments">
+			<span class="lift:Msg?showAll=true">error</span>
 			<p>
 				<label for="author">Your name: </label> <input type="text"
 					name="author" id="author" value="" />
@@ -76,15 +73,15 @@
 			</p>
 			<p>
 				<label for="code">Please type the code below: </label> <img
-					src="/captcha?id=40c9b522-64d4-4737-961e-1d29f82856d8" /> <br />
-				<input type="text" name="code" id="code" size="18" value="" /> <input
-					type="hidden" name="randomID"
-					value="40c9b522-64d4-4737-961e-1d29f82856d8" />
+					src="/captcha" /> <br /> <input type="text" name="code" id="code"
+					size="18" value="" />
 			</p>
 			<p>
 				<input type="submit" value="Submit your comment" />
 			</p>
+		</div>
 	</form>
+	
 	<script type="text/javascript" charset="utf-8"> 
 	    $(function() {         
 	        // Expose the form 
