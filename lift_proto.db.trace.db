@@ -104,3 +104,6 @@ org.h2.jdbc.JdbcSQLException: Connection is broken: "session closed" [90067-147]
 	at xsbt.boot.Boot$.runImpl(Boot.scala:24)
 	at xsbt.boot.Boot$.main(Boot.scala:15)
 	at xsbt.boot.Boot.main(Boot.scala)
+07-19 00:16:36 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "COMMENT_T" not found; SQL statement:
+SELECT comment_t.id, comment_t.content, comment_t.post, comment_t.author, comment_t.postedat FROM comment_t   ORDER BY id  ASC   LIMIT 20 OFFSET 0 [42102-147]

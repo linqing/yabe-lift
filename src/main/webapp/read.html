@@ -61,8 +61,9 @@
 	<h3>Post a comment</h3>
 
 	<form class="lift:form.ajax">
-		<div class="lift:Comments">
-			<span class="lift:Msg?showAll=true">error</span>
+		<div class="lift:Comments.add">
+			<span class="lift:Msg?id=captcha_error&errorClass=error">error</span>
+			<span class="lift:Msg?id=comment_t_content&errorClass=error">error</span>
 			<p>
 				<label for="author">Your name: </label> <input type="text"
 					name="author" id="author" value="" />
@@ -89,11 +90,6 @@
 	            $('form').expose({api: true}).load(); 
 	        }); 
 	        
-	        // If there is an error, focus to form
-	        if($('form .error').size()) {
-	            $('form').expose({api: true, loadSpeed: 0}).load(); 
-	            $('form input[type=text]').get(0).focus();
-	        }
 	    });
 	</script>
 </div>

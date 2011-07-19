@@ -6,6 +6,7 @@
 6. embed, autologin
 7. header_merge
 8. custom dispatch, InMemeryResponse, Captcha
+9. Schemifier add new Model
 
 ToDo:
 Add default user
