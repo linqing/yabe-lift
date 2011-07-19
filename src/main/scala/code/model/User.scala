@@ -57,5 +57,10 @@ class User extends MegaProtoUser[User] {
     override def textareaCols = 50
     override def displayName = "Personal Essay"
   }
+  
+  //Demo users can not be deleted and modified
+  object isDemo extends MappedBoolean(this) {
+    override def defaultValue=false
+  }
 }
 

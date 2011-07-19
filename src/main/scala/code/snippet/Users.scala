@@ -36,8 +36,13 @@ class Users {
     val user = User.find(By(User.id,id.toLong)).openTheBox
     
     def process() = {
-      user.delete_!
-      S.redirectTo("/admin/users/")
+      if(user.isDemo.get==true) {
+        S.error("demo_user_error","Demo users can not be deleted")
+        S.redirectTo("/admin/users/edit/" + id.toString)
+      } else {
+    	user.delete_!
+      	S.redirectTo("/admin/users/")
+      }
     }
     
     "type=submit" #> SHtml.onSubmitUnit(process)
@@ -132,6 +137,10 @@ class UsersEdit extends StatefulSnippet {
   def render:CssSel = {
     
     def process() = {
+      if(user.isDemo.get == true) {
+        S.error("demo_user_error","Demo users can not be modified")
+        S.redirectTo("/admin/users/edit/"+id.toString)
+      }
       user.validate match {
         case Nil => {
           user.save

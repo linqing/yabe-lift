@@ -8,10 +8,19 @@ import net.liftweb.mapper._
 import code.model._
 import Helpers._
 
-object AutoLogin {	
-  def render:CssSel = {
+class AutoLogin {	
+  def superUser:CssSel = {
 	def process() = {
-	  val u = User.findAll(By(User.email,"pkufashuo400@gmail.com"))
+	  val u = User.findAll(By(User.superUser,true),By(User.isDemo,true))
+	  if(u.length>0)
+	    User.logUserIn(u.head, ()=>S.redirectTo("/admin/posts/index"))
+	}
+    "type=submit" #> SHtml.onSubmitUnit(process)
+  }
+  
+  def normalUser:CssSel = {
+    def process() = {
+	  val u = User.findAll(NotBy(User.superUser,true),By(User.isDemo,true))
 	  if(u.length>0)
 	    User.logUserIn(u.head, ()=>S.redirectTo("/admin/posts/index"))
 	}

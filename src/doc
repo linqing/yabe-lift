@@ -7,6 +7,16 @@
 7. header_merge
 8. custom dispatch, InMemeryResponse, Captcha
 9. Schemifier add new Model
+10. Js clear error message, Noop is empty js command, ajaxForm use hidden to submit
+11. User curry function to keep postId, 
+	otherwise, postId will be lost in ajax request, 
+	use var for comment. so that more comments can be added without refresh page
+
+12. use param to update captcha
+13. comet and fire first comet update
+14. use sitemapMutators to add access control to every page
+15. override user home page, user isvalidated
+16. mapper default value.
 
 ToDo:
 Add default user

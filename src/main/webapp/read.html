@@ -32,8 +32,8 @@
 		</div>
 	</div>
 
-	<div class="comments">
-		<h3>2 comments</h3>
+	<div class="lift:comet?type=CommentsList comments">
+		<h3 class="comment-count">2 comments</h3>
 
 		<div class="comment">
 			<div class="comment-metadata">
@@ -42,28 +42,17 @@
 			</div>
 			<div class="comment-content">
 				<div class="about">Detail:</div>
-				You are right !<br />
+				<span class="comment-content-span">You are right !<br /></span>
 			</div>
 		</div>
-		<div class="comment">
-			<div class="comment-metadata">
-				<span class="comment-author">by Mike,</span> <span
-					class="comment-date">15 Jun 09</span>
-			</div>
-			<div class="comment-content">
-				<div class="about">Detail:</div>
-				I knew that ...<br />
-			</div>
-		</div>
-
 	</div>
+	<div class="lift:Comments.initComet"></div>
 
 	<h3>Post a comment</h3>
 
 	<form class="lift:form.ajax">
 		<div class="lift:Comments.add">
-			<span class="lift:Msg?id=captcha_error&errorClass=error">error</span>
-			<span class="lift:Msg?id=comment_t_content&errorClass=error">error</span>
+			<span id="error" class="error"></span>
 			<p>
 				<label for="author">Your name: </label> <input type="text"
 					name="author" id="author" value="" />
@@ -73,7 +62,7 @@
 				<textarea name="content" id="content"></textarea>
 			</p>
 			<p>
-				<label for="code">Please type the code below: </label> <img
+				<label for="code">Please type the code below: </label> <img id="captcha"
 					src="/captcha" /> <br /> <input type="text" name="code" id="code"
 					size="18" value="" />
 			</p>
@@ -90,6 +79,28 @@
 	            $('form').expose({api: true}).load(); 
 	        }); 
 	        
+	        $("#error").hide();
 	    });
+	    
+	    function clearError() {
+	    	$("#error").html("");
+	    	$("#error").hide();
+	    }
+	    
+	    function showError(msg) {
+	    	$("#error").html(msg);
+	    	$("#error").show();
+	    }
+	    
+	    //use a param to update captcha
+	    var update=0;
+	    
+	    function clearForm() {
+	    	$("#author").val("");
+	    	$("#content").val("");
+	    	$("#code").val("");
+	    	$("#captcha").attr("src","/captcha?update="+update);
+	    	update++;
+	    }
 	</script>
 </div>

@@ -48,6 +48,7 @@ class Boot {
     def menus = List(
     		Menu.i("Home") / "index", //>> User.AddUserMenusAfter,
     		Menu.i("Read") / "read" , 
+ 
     		//Can be accessed by both users and admins
     		Menu.i("My posts") / "admin" / "posts" / ** >> IfUserLoggedIn  >> LocGroup("admin"),
     		
@@ -96,6 +97,10 @@ class Boot {
     LiftRules.dispatch.append{
       case Req("captcha" :: Nil, _, _) => YabeHelper.captcha
     }
+    
+    //Create Demo Users
+    initUsers()
+    
     // Use jQuery 1.4
     //LiftRules.jsArtifacts = net.liftweb.http.js.jquery.JQuery14Artifacts
 
@@ -119,5 +124,48 @@ class Boot {
 
     // Make a transaction span the whole HTTP request
     S.addAround(DB.buildLoanWrapper)
+  }
+  
+  //Init user data, one super user and one normal user.
+  def initUsers() {
+    if(isDemoSuperUserExist == false) {
+      val superUser = User.create
+		      .firstName("Super")
+		      .lastName("Demo")
+		      .email("super@demo.com")
+		      .password("demouser")
+		      .superUser(true)
+		      .isDemo(true)
+		      .validated(true)
+		   
+	  superUser.save
+	}
+    
+    if(isDemoNormalUserExist == false) {
+      val normalUser = User.create
+    		  .firstName("Normal")
+    		  .lastName("Demo")
+    		  .email("normal@demo.com")
+    		  .password("demouser")
+    		  .superUser(false)
+    		  .isDemo(true)
+    		  .validated(true)
+    	
+      normalUser.save
+    }
+  }
+  
+  def isDemoSuperUserExist() = {
+    User.count(By(User.isDemo,true),By(User.superUser,true)) match {
+      case x if x > 0 => true
+      case _ => false
+    }
+  }
+  
+  def isDemoNormalUserExist() = {
+    User.count(By(User.isDemo,true),NotBy(User.superUser,true)) match {
+      case x if x > 0 => true
+      case _ => false
+    }
   }
 }
