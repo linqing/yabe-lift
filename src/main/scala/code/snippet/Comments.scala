@@ -55,4 +55,45 @@ class Comments {
     "*" #> ""
   }
 
+  /******************************************************************************************
+   * For admin panel..
+   * ****************************************************************************************/
+  private object searchStr extends RequestVar("")
+  
+  def list:CssSel = {
+    val comments = getComments()
+    var odd = "even"
+    "tr" #> comments.map {
+      c=>
+	    odd = YabeHelper.oddOrEven(odd);
+		"tr [class]" #> odd &
+		"a [href]" #> ("/admin/comments/edit/"+c.id) &
+		"a *" #> c.content.short
+	}
+  }
+  
+  private def getComments() = {
+    val comments = validSearch() match {
+      case x if x==true => Comment.findAll(
+          BySql(" content like '%"+searchStr.is+"%'", 
+              IHaveValidatedThisSQL("charliechen","2011-07-11")),
+          OrderBy(Comment.content,Ascending))
+          
+      case _ => Comment.findAll(OrderBy(Comment.content, Ascending))
+    }
+    
+    getCommentsOrder match {
+      case "DESC" => comments.reverse
+      case "ASC" => comments
+    }
+  }
+  
+  private def validSearch() = searchStr.is!=""
+    
+  private def getCommentsOrder = {
+    S.param("order") match {
+      case Full(p) if p=="DESC" => "DESC"
+      case _ => "ASC"
+    }
+  }
 }

@@ -17,6 +17,7 @@
 14. use sitemapMutators to add access control to every page
 15. override user home page, user isvalidated
 16. mapper default value.
+17. override delete for post to make comments is also deleted.
 
 ToDo:
 Add default user

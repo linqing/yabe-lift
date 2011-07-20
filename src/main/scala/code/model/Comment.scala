@@ -6,6 +6,7 @@ class Comment extends LongKeyedMapper[Comment] with IdPK {
 	def getSingleton = Comment
 
 	object author extends MappedString(this,140)
+	
 	object content extends MappedText(this) {
 	  override def validations = {
 		def notNull(txt:String ) = {
@@ -17,8 +18,17 @@ class Comment extends LongKeyedMapper[Comment] with IdPK {
 	    
 		notNull _ :: Nil
 	  }
+	  
+	  def short = {
+	    this.get.length match {
+	      case l if l > 50 => this.get.substring(50) + "..."
+	      case _ => this.get
+	    }
+	  }
 	}
+	
 	object postedAt extends MappedDateTime(this)
+	
 	object post extends LongMappedMapper(this,Post) {
 	  override def validations = {
 	    def validatePost(id:Long) =  {
